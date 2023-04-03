@@ -1,0 +1,11 @@
+.Carousel{
+    height: 340px;
+    /* background-image: linear-gradient(to right,rgb(253, 4, 4),rgb(254, 165, 1),rgb(253, 253, 1)); */
+}
+.img-size{
+    background-position: right;
+    margin: 30px;
+    width: 100%;
+    height: 300px;
+    opacity: 1;
+}
