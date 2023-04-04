@@ -30,7 +30,7 @@ export default function Home() {
 .then((res)=>setState(res.data))
 .catch((rej)=>{console.log(rej)})
 
-ApiCaller({url:"http://localhost:3001/futurecaro",
+ApiCaller({url:"https://ecombackend-nr3r.onrender.com/futurecaro",
 method:"get"
 })
 .then((res)=>{
