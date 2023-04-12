@@ -5,6 +5,9 @@ const cartIncrDecr=createSlice({
     initialState:1,
     reducers:{
         increatement:(state,action)=>{
+            const id=action.payload.id;
+            console.log(id);
+
             state+=1;
             return state
         },

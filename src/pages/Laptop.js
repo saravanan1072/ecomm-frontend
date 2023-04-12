@@ -1,11 +1,11 @@
 import {useEffect,useState} from 'react'
 import {ApiCaller} from '../Apicaller/Apicaller';
 import Rating from '../common/Rating';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { update } from '../utilities/Slice'
 import Carosel from '../common/Carosal';
 import Footer from "../common/Footer";
-import { addtocart } from "../utilities/CartSlice";
+import { addtocart,calculatePrice } from "../utilities/CartSlice";
 import Navbar from '../utilities/Navbar';
 
 
@@ -24,13 +24,10 @@ method:"get"
 .then((res)=>setState(res.data))
 .catch((rej)=>{console.log(rej)})
   },[])
-
-
-  const select=useSelector((store)=>store.reducer1);
-  console.log(select)
  const dispatch=useDispatch();
  const cartData=(item)=>{
   dispatch(addtocart(item))
+  dispatch(calculatePrice())
 
 }
 
@@ -48,7 +45,7 @@ method:"get"
        <Carosel  data={state}/>
      
      <div className="flex">
-     {productData.map((item) => {
+     {    productData.map((item) => {
           return (
             <div className="child " key={item.id}>
               <img className="child-image-size lap" src={item.image} alt="images"  />
@@ -67,7 +64,7 @@ method:"get"
                 <b className="mrp-price">M.R.P : <b className="actuual-price">{item?.actualPrice}</b> {`(${item?.discount}% off)`}</b>
               </span>
               <br /> <br/>
-              <button className="add-to-cart"  onClick={()=>addToCart(item)}>Add to cart</button>
+              <button className="add-to-cart"  onClick={()=>addToCart({item,quantity:1})}>Add to cart</button>
             </div>
           );
         })}

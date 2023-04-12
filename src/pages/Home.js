@@ -12,7 +12,7 @@ import Footer from "../common/Footer";
 import Navbar from '../utilities/Navbar';
 import Carosel from '../common/Carosal';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
-
+import { addtocart,calculatePrice } from "../utilities/CartSlice";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/css';
@@ -47,9 +47,10 @@ method:"get"
 .catch((rej)=>{console.log(rej)})
   },[])
  const dispatch=useDispatch();
- const addToCart=()=>{
-    dispatch(update());
-
+ const addToCart=(item)=>{
+    dispatch(addtocart(item))
+    dispatch(calculatePrice())
+      dispatch(update());
  }
   const handleLoad=()=>{
     console.log("fun");
@@ -104,7 +105,7 @@ method:"get"
                 </span>
              
               <br /> <br/>
-              <button className="add-to-cart"  onClick={addToCart}>Add to cart</button>
+              <button className="add-to-cart"  onClick={()=>addToCart({item,quantity:1})}>Add to cart</button>
             </div>
           );
         })}
@@ -144,7 +145,6 @@ method:"get"
    <div>
 
          <Swiper
-      // install Swiper modules
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       spaceBetween={50}
       slidesPerView={3}
@@ -157,7 +157,7 @@ method:"get"
        {future?.map((item) => {
           return (
             <div className="Hbestseller" key={item.id}>
-             <SwiperSlide key={item.id}> <img className="Hchild-image-size" src={item.image} alt="images" /></SwiperSlide>
+             <SwiperSlide key={item.id}> <img className="Hchild-image-size  sizemedia" src={item.image} alt="images" /></SwiperSlide>
               <br />
             </div>
           );

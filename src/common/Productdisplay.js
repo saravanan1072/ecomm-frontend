@@ -1,25 +1,24 @@
 import React from "react";
 import Rating from "./Rating";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { update } from '../utilities/Slice';
-import { addtocart } from "../utilities/CartSlice";
+import { addtocart, calculatePrice } from "../utilities/CartSlice";
 
 import Footer from "./Footer"
 export default function Productdisplay(props) {
   const { data } = props;
-
-   const select=useSelector((store)=>store.reducer1);
-   console.log(select)
   const dispatch=useDispatch();
 
 const cartData=(item)=>{
   dispatch(addtocart(item))
+  dispatch(calculatePrice())
 
 }
 
   const addToCart=async(item)=>{
    await cartData(item)
     dispatch(update());
+    
   
 
   }
@@ -44,8 +43,9 @@ const cartData=(item)=>{
                 <b className="discount-price" >{`${item.discountPrice} `}</b>
                 <b className="mrp-price">M.R.P : <b className="actuual-price">{item?.actualPrice}</b> {`(${item?.discount}% off)`}</b>
               </span>
-              <br /> <br/>
-              <button className="add-to-cart"  onClick={()=>addToCart(item)}>Add to cart</button>
+              <br /> <br/> 
+             
+              <button className="add-to-cart"  onClick={()=>addToCart({item,quantity:1})}>Add to cart</button>
             </div>
           );
         })}

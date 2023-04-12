@@ -33,7 +33,6 @@ export default function Navbar() {
         <nav className="navbar">
             <ul>
                <li><Link to="/">HOME</Link></li>
-               <li> <Link to="/store"> STORE</Link></li>
                <li><Link to="/phone"> PHONE</Link></li>
                <li><Link to="/ipad"> IPAD</Link></li>
                <li><Link to="/laptop">LAPTOP</Link></li>
