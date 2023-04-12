@@ -4,7 +4,6 @@ import { useState } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import picss from '../images/back.png'
 let login;
 export default function Form() {
   const url="https://ecombackend-nr3r.onrender.com/signin";
