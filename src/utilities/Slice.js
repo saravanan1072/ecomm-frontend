@@ -10,8 +10,13 @@ const Slice=createSlice({
     reduce:(state,action)=>{
         state=state-1;
         return state
+},
+empty:(state)=>{
+    state=0;
+    return state;
+
 }
   
       }})
-export const {update,reduce}=Slice.actions;
+export const {update,reduce,empty}=Slice.actions;
 export default Slice.reducer;

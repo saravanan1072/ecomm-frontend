@@ -1,11 +1,14 @@
 import React from 'react'
 import { useSelector,useDispatch } from 'react-redux';
-
-import { removeToCart,decreatements, increatements, calculatePrice } from '../utilities/CartSlice';
+import { empty } from '../utilities/Slice';
+import { removeToCart,decreatements, increatements, calculatePrice,emptycartItem } from '../utilities/CartSlice';
 import { reduce } from '../utilities/Slice';
+import { useNavigate } from 'react-router-dom';
 export default function Cart() {
   const data=useSelector((store)=>store.cartReducer)
+  const selector=useSelector((store)=>store.reducer1)
   const dispatch=useDispatch();
+  const navigate=useNavigate()
    const fun=(item)=>{
     dispatch(removeToCart(item))
   }
@@ -13,6 +16,102 @@ export default function Cart() {
    await fun(item)
    dispatch(reduce())
   }
+
+
+const payment=()=>{
+
+  //<button id="rzp-button1">Pay with Razorpay</button>
+
+
+  var orderId ;
+$(document).ready(function(){
+    var settings = {
+  "url": "https://ecombackend-nr3r.onrender.com/create/order",
+  "method": "POST",
+  "timeout": 0,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "data": JSON.stringify({
+    "amount": data.total*100
+  }),
+};
+
+
+//creates new orderId everytime
+$.ajax(settings).done(function (response) {
+
+  orderId=response.orderId;
+  console.log(orderId);
+  $("button").show();
+});
+});
+
+
+document.getElementById('rzp-button1').onclick = function(e){
+ 
+  var options = {
+    "key": "rzp_test_Hk1Cj8n9Wbk9zP", // Enter the Key ID generated from the Dashboard
+    "amount": data.total * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "E-SHOPPING",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": orderId, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "handler": function (response){
+        alert(response.razorpay_payment_id);
+        alert(response.razorpay_order_id);
+        alert(response.razorpay_signature)
+        dispatch(emptycartItem())
+        dispatch(empty())
+       
+        navigate('/')
+
+        var settings = {
+          "url": "https://ecombackend-nr3r.onrender.com/api/payment/verify",
+          "method": "POST",
+          "timeout": 0,
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "data": JSON.stringify({response}),
+        }
+   
+//creates new orderId everytime
+$.ajax(settings).done(function (response) {
+
+  alert(JSON.stringify(response))
+
+}) },
+
+"theme": {
+  "color": "#3399cc"
+}
+};
+var rzp1 = new Razorpay(options);
+rzp1.on('payment.failed', function (response){
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+});
+rzp1.open();
+e.preventDefault();
+}
+
+
+
+
+
+
+
+}
+
+
+
   return (
     <>
     <div  className='cart-title'>Cart</div> <br/>
@@ -56,7 +155,7 @@ export default function Cart() {
         <div> subTotal :{data.subTotal}</div>
         <div>Shiping fee :{data.shipping}</div>
         <div>total :{data.total} </div>
-        <button className='submit check'>Checkout</button>
+        <button className='submit check' id="rzp-button1" onClick={payment}>Checkout</button>
 
         </div>
        

@@ -70,23 +70,13 @@ const CartSlice=createSlice({
             state.shipping =0
             state.total = state.subTotal + state.shipping ;
           },
-        //   priceDecrease:(state,action)=>{
-        //     console.log("hello");
-        //     let sum = 0;
-        //     let arr=state.cartItems;
-        //     for(let i=0;i<arr.length;i++){
-        //     let price=arr[i].item.discountPrice;
-        //      price=price.replaceAll(',','')
-        //         sum+=price* arr[i].quantity
-        //     }
-        //     console.log(sum);
-        //     state.subTotal = sum;
-        //     state.shipping =0
-        //     state.total = state.subTotal + state.shipping ;
-
-        //   }
+          emptycartItem:(state,action)=>{
+            state.cartItems=[];
+        
+          }
+       
           
     }
 })
-export const {addtocart,removeToCart,increatements,decreatements, calculatePrice, priceDecrease}=CartSlice.actions;
+export const {addtocart,removeToCart,increatements,decreatements, calculatePrice, priceDecrease,emptycartItem}=CartSlice.actions;
 export default CartSlice.reducer
