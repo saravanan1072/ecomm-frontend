@@ -116,6 +116,7 @@ input{
  
 text-align: center;
 }
+
 .forms{
     font-weight: 500;
     font-size: large;
@@ -276,22 +277,29 @@ text-align: center;
 .check{
     margin: 20px;
 }
+.continue{
+    margin-left: 45%;
+    width: 200px;
+    height: 30px;
+    border-radius: 10px;
+    background-color: tomato;
+}
 
 
-@media (max-width:480px) {
-    .sizemedia{
+/* @media (max-width:480px) { */
+    /* .sizemedia{
         width: 100px;
         height: 100px;
         margin-left: 10px;
         margin-top: 100px;
-    }
-    .cart-flex{
+    } */
+    /* .cart-flex{ */
         /* display: block; */
         /* justify-content: space-evenly;
         align-items: center; */
         
-    }
+    /* }
     
-}
+} */
     
   

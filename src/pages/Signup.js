@@ -11,7 +11,8 @@ export default function Form() {
     lastName:"",
     email: "",
     password: "",
-    mobile:""
+    mobile:"",
+    file:" "
   });
 const handledata=()=>{
   axios.post(url,data)
@@ -60,7 +61,7 @@ const handledata=()=>{
             required
             type="email"
             id="email"
-            value={data.email}
+           // value={data.email}
             name="email"
             onChange={handleChange}
             placeholder="Enter a email here!..."
@@ -88,6 +89,8 @@ const handledata=()=>{
             onChange={handleChange}
             placeholder="Enter a mobile number"
           />
+          <br></br>
+        
            <br></br>
           <button type="submit" className="submit" >
           Submit
