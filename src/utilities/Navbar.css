@@ -65,3 +65,63 @@ li:hover{
 
     
 }
+@media (max-width:360px) {
+  
+    span{
+        margin: 0px 10px;
+    }
+   
+
+    
+}
+@media (max-width:820px) {
+    #language{
+        margin: 0px 10px 0px 100px;
+        
+    }
+    #doller{
+        margin-right: 40px;
+    }
+    span{
+        margin: 0px 23px;
+    }
+    .navbar ul{
+        margin-left: 5px;  
+    }
+
+    
+}
+@media (max-width:912px) {
+    #language{
+        margin: 0px 10px 0px 200px;
+        
+    }
+    #doller{
+        margin-right: 40px;
+    }
+    span{
+        margin: 0px 23px;
+    }
+    .navbar ul{
+        margin-left: 5px;  
+    }
+
+    
+}
+@media (max-width:280px) {
+    #language{
+        margin: 0px 5px 0px 0px;
+        
+    }
+    #doller{
+        margin-right: 10px;
+    }
+    span{
+        margin: 0px 3px;
+    }
+    .navbar ul{
+        margin-left: 50px;  
+    }
+
+    
+}
