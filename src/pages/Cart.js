@@ -130,7 +130,7 @@ export default function Cart() {
   return (
     <>
     <div  className='cart-title'>Cart</div>
-    {data?.cartItems.length > 0 ?     <div className="cart-flex " style={{fontWeight:'bold' ,fontSize:'18px',color:'tomato'}}>
+    {data?.cartItems.length > 0 ?     <div className="cart-flex flex1" style={{fontWeight:'bold' ,fontSize:'18px',color:'tomato'}}>
     <div className="cart-flex">Product Image</div>
     <div className="cart-flex">product Name</div>
     <div className="cart-flex">Quantity</div>
@@ -159,8 +159,8 @@ export default function Cart() {
         
          data?.cartItems?.map((item,index) => {
           return (
-            <div className="cart-flex" key={item.item.id}>
-              <div className='cart-child'><img  src={item.item.image} alt="images" width={"200px"} height={"150px"}/></div>
+            <div className="cart-flex flex2" key={item.item.id}>
+              <div className='cart-child'><img  src={item.item.image} alt="images" className='hii' width={"200px"} height={"150px"}/></div>
               <div className='cart-child'><b className="header-title">{item.item.title} </b> </div>
               <div className='cart-child'> <button onClick={()=>{
                 dispatch(increatements(item))
