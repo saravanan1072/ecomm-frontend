@@ -9,6 +9,7 @@ import Accessories from '../pages/Accessories';
 import Cart from '../pages/Cart';
 import Signup from "../pages/Signup"
 import Signin from '../pages/Signin'
+import Payment from '../pages/Payment';
 export default function Routers() {
   return (
     <>
@@ -21,6 +22,9 @@ export default function Routers() {
         <Route path='/phone' element={<Phone/>}/>
         <Route path='/accessories' element={<Accessories/>}/>
         <Route path='/cart' element={<Cart/>}/>
+        <Route path='/cart/a' element={<Signup/>}/>
+
+        <Route path='/cart/payment' element={<Payment/>}/>
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/signin' element={<Signin/>}/>
 

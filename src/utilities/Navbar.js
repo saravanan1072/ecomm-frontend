@@ -2,14 +2,18 @@ import React from "react";
 import { Link,useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { login } from "../pages/Signin";
+
 import "./Navbar.css";
 
 export default function Navbar() {
-  const selector=useSelector((store)=>store.reducer1)
+  // const selector=useSelector((store)=>store.reducer1)
+  const data2=useSelector((store)=>store.cartReducer)
+
   const navigate=useNavigate()
   const transfer=()=>{
     navigate("/signup")
   }
+
   return (
     <>
       <div className="header">
@@ -24,7 +28,7 @@ export default function Navbar() {
           <i className="fa-solid fa-user"></i>{login  ? login :<span onClick={transfer}>signup </span>}
         </span>
         <span>
-        <Link to="/cart"><i className="fa-solid fa-cart-shopping"></i>{selector} items</Link>  
+        <Link to="/cart"><i className="fa-solid fa-cart-shopping"></i>{data2.cartItems.length} items</Link>  
         </span>
         <span>
           <i className="fa-solid fa-magnifying-glass"></i>

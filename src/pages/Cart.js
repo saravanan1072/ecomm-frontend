@@ -3,9 +3,12 @@ import { useSelector,useDispatch } from 'react-redux';
 import { removeToCart,decreatements, increatements, calculatePrice } from '../utilities/CartSlice';
 import { reduce } from '../utilities/Slice';
 import { Link } from 'react-router-dom';
+import { login } from "../pages/Signin";
+import { useNavigate } from 'react-router-dom';
 export default function Cart() {
   const data=useSelector((store)=>store.cartReducer)
   const dispatch=useDispatch();
+  const navigate=useNavigate()
 
    const fun=(item)=>{
     dispatch(removeToCart(item))
@@ -126,6 +129,15 @@ export default function Cart() {
 // }
 
 
+const handleCheckout=()=>{
+  if (login){
+    navigate('./payment'); 
+  }else{
+    alert("Before going to Payment page sign up first!")
+    navigate('./a');
+
+  }  
+}
 
   return (
     <>
@@ -186,7 +198,8 @@ export default function Cart() {
         <div>Shiping fee :{data.shipping}</div>
         <div>total :{data.total} </div>
 
-      <Link to="https://rzp.io/l/PDuFLCivUc">  <button className='submit check' id="rzp-button1">Checkout</button></Link>
+       <button className='submit check' onClick={handleCheckout}>Checkout</button>
+     
 
         </div>
        
